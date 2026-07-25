@@ -3,6 +3,8 @@ package ir.maktabsharif.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+import java.util.Objects;
+
 @Entity
 public class Book {
     @Id
@@ -57,5 +59,27 @@ public class Book {
 
     public void setAvailableCopies(Integer availableCopies) {
         this.availableCopies = availableCopies;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(id, book.id) && Objects.equals(title, book.title) && Objects.equals(author, book.author) && Objects.equals(availableCopies, book.availableCopies);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, author, availableCopies);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", availableCopies=" + availableCopies +
+                '}';
     }
 }
