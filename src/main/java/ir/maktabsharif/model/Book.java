@@ -1,29 +1,32 @@
 package ir.maktabsharif.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
 public class Book {
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
     private String title;
     private String author;
     private Integer availableCopies;
+    private Double price;
 
-    public Book(Long id, String title, String author, Integer availableCopies) {
+    public Book(Long id, String title, String author, Integer availableCopies, Double price) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.availableCopies = availableCopies;
+        this.price = price;
     }
 
-    public Book(String title, String author, Integer availableCopies) {
+    public Book(String title, String author, Integer availableCopies , Double price) {
         this.title = title;
         this.author = author;
         this.availableCopies = availableCopies;
+        this.price =price;
     }
 
     public Book() {
@@ -61,16 +64,24 @@ public class Book {
         this.availableCopies = availableCopies;
     }
 
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return Objects.equals(id, book.id) && Objects.equals(title, book.title) && Objects.equals(author, book.author) && Objects.equals(availableCopies, book.availableCopies);
+        return Objects.equals(title, book.title) && Objects.equals(author, book.author) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, author, availableCopies);
+        return Objects.hash(id, title, author, availableCopies , price);
     }
 
     @Override
@@ -80,6 +91,7 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", availableCopies=" + availableCopies +
+                ", price = " + price +
                 '}';
     }
 }
