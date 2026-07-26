@@ -71,7 +71,6 @@ public class Book {
     public void setPrice(Double price) {
         this.price = price;
     }
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
