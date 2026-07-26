@@ -6,6 +6,8 @@ import ir.maktabsharif.model.Book;
 import ir.maktabsharif.repository.BookRepositoryInterface;
 import ir.maktabsharif.service.BookService;
 
+import java.util.List;
+
 
 public class BookServiceImpl implements BookService {
 
@@ -49,5 +51,9 @@ public class BookServiceImpl implements BookService {
         if (book.getPrice() < 0){
             throw new InvalidDataException("Price Can Not Be Negative");
         }
+    }
+
+    public List<Book> findAll(){
+        return bookRepository.findAll();
     }
 }
