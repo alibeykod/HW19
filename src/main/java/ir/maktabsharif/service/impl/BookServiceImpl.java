@@ -4,10 +4,8 @@ import ir.maktabsharif.exception.BookNotFoundException;
 import ir.maktabsharif.exception.InvalidDataException;
 import ir.maktabsharif.model.Book;
 import ir.maktabsharif.repository.BookRepositoryInterface;
-import ir.maktabsharif.repository.impl.BookRepositoryImpl;
 import ir.maktabsharif.service.BookService;
-import ir.maktabsharif.service.GenericService;
-import jakarta.persistence.EntityManagerFactory;
+
 
 public class BookServiceImpl implements BookService {
 
