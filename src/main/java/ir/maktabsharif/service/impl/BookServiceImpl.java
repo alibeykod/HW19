@@ -4,6 +4,7 @@ import ir.maktabsharif.exception.BookNotFoundException;
 import ir.maktabsharif.exception.InvalidDataException;
 import ir.maktabsharif.model.Book;
 import ir.maktabsharif.repository.BookRepositoryInterface;
+import ir.maktabsharif.repository.impl.BookRepositoryImpl;
 import ir.maktabsharif.service.BookService;
 
 import java.util.List;
@@ -11,11 +12,7 @@ import java.util.List;
 
 public class BookServiceImpl implements BookService {
 
-    BookRepositoryInterface bookRepository;
-    public BookServiceImpl(BookRepositoryInterface bookRepository){
-        this.bookRepository = bookRepository;
-    }
-
+BookRepositoryImpl bookRepository = new BookRepositoryImpl();
 
     @Override
     public void save(Book book) {
