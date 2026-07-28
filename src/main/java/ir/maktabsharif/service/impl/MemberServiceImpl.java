@@ -5,15 +5,11 @@ import ir.maktabsharif.exception.InvalidDataException;
 import ir.maktabsharif.exception.MemberNotFoundException;
 import ir.maktabsharif.model.Member;
 import ir.maktabsharif.repository.MemberRepository;
+import ir.maktabsharif.repository.impl.MemberRepositoryImpl;
 import ir.maktabsharif.service.MemberService;
 
 public class MemberServiceImpl implements MemberService {
-    private final MemberRepository memberRepository;
-
-    public MemberServiceImpl(MemberRepository memberRepository){
-        this.memberRepository = memberRepository;
-    }
-
+MemberRepositoryImpl memberRepository = new MemberRepositoryImpl();
 
 
     @Override
