@@ -12,11 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class BookRepositoryImpl implements BookRepositoryInterface {
-    private final EntityManagerFactory emf;
-
-    public BookRepositoryImpl(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
+EntityManagerFactory emf = DatabaseConfig.getEmf();
 
     @Override
     public void save(Book book) {
@@ -38,11 +34,12 @@ public class BookRepositoryImpl implements BookRepositoryInterface {
         EntityTransaction tx = em.getTransaction();
         try (em) {
             tx.begin();
-            Book oldBook = em.find(Book.class, book.getId());
+/*            Book oldBook = em.find(Book.class, book.getId());
             oldBook.setTitle(book.getTitle());
             oldBook.setAuthor(book.getAuthor());
             oldBook.setPrice(book.getPrice());
-            oldBook.setAvailableCopies(book.getAvailableCopies());
+            oldBook.setAvailableCopies(book.getAvailableCopies());*/
+            em.merge(book);
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
