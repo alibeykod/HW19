@@ -12,9 +12,9 @@ public class Book {
     private String title;
     private String author;
     private Integer availableCopies;
-    private Double price;
+    private double price;
 
-    public Book(Long id, String title, String author, Integer availableCopies, Double price) {
+    public Book(Long id, String title, String author, Integer availableCopies, double price) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -22,7 +22,7 @@ public class Book {
         this.price = price;
     }
 
-    public Book(String title, String author, Integer availableCopies , Double price) {
+    public Book(String title, String author, Integer availableCopies , double price) {
         this.title = title;
         this.author = author;
         this.availableCopies = availableCopies;
@@ -64,7 +64,7 @@ public class Book {
         this.availableCopies = availableCopies;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
