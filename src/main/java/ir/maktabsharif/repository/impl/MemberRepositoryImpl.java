@@ -1,20 +1,19 @@
 package ir.maktabsharif.repository.impl;
 
 import ir.maktabsharif.exception.DatabaseOperationException;
+import ir.maktabsharif.model.Book;
 import ir.maktabsharif.model.Member;
 import ir.maktabsharif.repository.MemberRepository;
+import ir.maktabsharif.util.DatabaseConfig;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 
+import java.util.List;
 import java.util.Optional;
 
 public class MemberRepositoryImpl implements MemberRepository {
-    private final EntityManagerFactory emf;
-
-    public MemberRepositoryImpl(EntityManagerFactory emf){
-        this.emf = emf;
-    }
+EntityManagerFactory emf = DatabaseConfig.getEmf();
     @Override
     public void save(Member member) {
         EntityManager em = emf.createEntityManager();
@@ -36,6 +35,7 @@ public class MemberRepositoryImpl implements MemberRepository {
         try (em){
             tx.begin();
             Member oldMember = em.find(Member.class , member.getId());
+            oldMember.setId(member.getId());
             oldMember.setFullName(member.getFullName());
             oldMember.setPhoneNumber(member.getPhoneNumber());
             tx.commit();
@@ -71,6 +71,21 @@ public class MemberRepositoryImpl implements MemberRepository {
         }catch (Exception e){
             tx.rollback();
             throw new DatabaseOperationException("Member Has Not Been Found " + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Member> findAll() {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try(em){
+            tx.begin();
+            List<Member> members = em.createQuery("SELECT m FROM Member m" , Member.class).getResultList();
+            tx.commit();
+            return members;
+        }catch (Exception e){
+            tx.rollback();
+            throw new DatabaseOperationException("Member Not found To add Member List Amd Show;" + e.getMessage());
         }
     }
 }
